@@ -1,0 +1,42 @@
+<!--
+<h1>
+    Daedalean Project by {{name}}<br> Based in {{location}}
+</h1>
+<img src="https://www.companies.sg/logo.png">
+-->
+
+<!--
+<h1 align="center">Daedalean Prototype</h1>
+
+<form method="POST" action ="result" align="center">
+    {%csrf_token%}
+    <textarea name="text" rows="5" cols="50"></textarea><br>
+    <input type="Submit">
+</form>
+-->
+
+<h1 align="center">Daedalean Prototype</h1>
+<form method="POST" action="{% url 'result' %}" align="center">
+    {% csrf_token %}
+    <textarea name="text" rows="5" cols="50"></textarea><br>
+    <input type="submit" value="Submit">
+</form>
+
+{% if text %}
+<body align="center">
+    <strong>Inputted Text:</strong> {{text}} <br>
+    <br>
+    <strong>Number of Words:</strong> {{word_count}} <br>
+    <br>
+    <strong>Flesch Reading Ease (FRE) Score:</strong> {{fre}}<br>
+    <strong>Flesch-Kincaid Grade Level (FKRA):</strong> {{fkra}} <br>
+    <br>
+    <strong>Coleman-Liau Index:</strong> {{cli}} <br>
+    <br>
+    <strong>Simple Measure of Gobbledygook (SMOG) Index:</strong> {{smog}} <br>
+    <br>
+    <strong>Automated Readability Index:</strong> {{ari}}
+</body>
+{% endif %}
+
+<h1 align="center">{{exception_string}}</h1>
