@@ -1,42 +1,111 @@
-<!--
-<h1>
-    Daedalean Project by {{name}}<br> Based in {{location}}
-</h1>
-<img src="https://www.companies.sg/logo.png">
--->
+{% load static %}
 
-<!--
-<h1 align="center">Daedalean Prototype</h1>
+<head>
 
-<form method="POST" action ="result" align="center">
-    {%csrf_token%}
-    <textarea name="text" rows="5" cols="50"></textarea><br>
-    <input type="Submit">
-</form>
--->
+    <style>
+        .parent {
+            display: inline-block;
+            width: 350px;
+            height: 80px;
+            margin: 10px;
+            padding: 20px;
+            border: 1px solid black;
+            border-radius: 10px;
+            vertical-align: middle;
+            text-align: center;
+            background-color: lightgray;
+        }
 
-<h1 align="center">Daedalean Prototype</h1>
-<form method="POST" action="{% url 'result' %}" align="center">
-    {% csrf_token %}
-    <textarea name="text" rows="5" cols="50"></textarea><br>
-    <input type="submit" value="Submit">
-</form>
+        .child{
+            display: inline-block;
+            width: 250px;
+            height: 20px;
+            border: 1px solid rgb(255, 215, 0);
+            border-radius: 5px;
+            text-align: center;
+            vertical-align: middle;
+            background-color: rgb(255, 215, 0);
+        }
 
-{% if text %}
-<body align="center">
-    <strong>Inputted Text:</strong> {{text}} <br>
-    <br>
-    <strong>Number of Words:</strong> {{word_count}} <br>
-    <br>
-    <strong>Flesch Reading Ease (FRE) Score:</strong> {{fre}}<br>
-    <strong>Flesch-Kincaid Grade Level (FKRA):</strong> {{fkra}} <br>
-    <br>
-    <strong>Coleman-Liau Index:</strong> {{cli}} <br>
-    <br>
-    <strong>Simple Measure of Gobbledygook (SMOG) Index:</strong> {{smog}} <br>
-    <br>
-    <strong>Automated Readability Index:</strong> {{ari}}
-</body>
-{% endif %}
+        .nav {
+            background-color: black;
+            color: #fff;
+            padding: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            margin-right: 10px;
+        }
+
+        .icons {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+        }
+
+        .icons a:not(:last-child) {
+            margin-right: 10px;
+        }
+
+    </style>
+
+    <div class="nav">
+        <a href="">
+            <img src="{% static 'images/applogo.png' %}" alt="WordWell Icon" width="30" height="30" class="logo">
+        </a>
+        <div class="icons">
+            <a href="notifications">
+                <img src="{% static 'images/notifications.png' %}" alt="Notifications" width="20" height="20">
+            </a>
+            <a href="login">
+                <img src="{% static 'images/login.png' %}" alt="Login" width="20" height="20">
+            </a>
+            <a href="settings">
+                <img src="{% static 'images/settings.png' %}" alt="Settings" width="20" height="20">
+            </a>
+        </div>
+    </div>
+
+    <h1 align="center">Daedalean Prototype</h1>
+    <form method="POST" action="{% url 'result' %}" align="center">
+        {% csrf_token %}
+        <textarea name="text" rows="5" cols="50"></textarea><br>
+        <input type="submit" value="Submit">
+    </form>
+
+    <body align="center">
+        <div>
+            <strong>Inputted Text:</strong><br> {{text}} <br>
+            <br>
+            <br>
+            <strong>Number of Words:</strong><br> {{word_count}} <br>
+        </div>
+        
+        <div class="parent">
+            <strong>Flesch Reading Ease (FRE) Score:</strong><br> 
+            <div class="child">{{fre}}</div><br>
+            <strong>Flesch-Kincaid Grade Level (FKRA):</strong><br> 
+            <div class="child">{{fkra}}</div><br>
+        </div>
+        
+        <div class="parent">
+            <strong>Coleman-Liau Index:</strong><br> 
+            <div class="child">{{cli}}</div>
+        </div>
+        
+        <div class="parent">
+            <strong>Simple Measure of Gobbledygook (SMOG) Index:</strong><br> 
+            <div class="child">{{smog}}</div>
+        </div>
+
+        <div class="parent">
+            <strong>Automated Readability Index:</strong><br> 
+            <div class="child">{{ari}}</div>
+        </div>
+    </body>
 
 <h1 align="center">{{exception_string}}</h1>
+</head>
