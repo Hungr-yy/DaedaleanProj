@@ -3,6 +3,7 @@
 <head>
 
     <style>
+
         .parent {
             display: inline-block;
             width: 350px;
@@ -28,33 +29,92 @@
         }
 
         .nav {
+            position: fixed;
             background-color: black;
             color: #fff;
-            padding: 10px;
+            padding: 5px;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            left: 0;
+            top: 0;
+            width: 100%
         }
 
         .logo {
-            margin-right: 10px;
+            margin-left: 10px;
         }
 
         .icons {
             display: flex;
             justify-content: flex-end;
             align-items: center;
+            margin-right: 20px;
         }
 
         .icons a:not(:last-child) {
             margin-right: 10px;
         }
 
+        body {
+            padding-top: 50px;
+        }
+
+        .text {
+            font-size: 14px;
+            font-weight: normal;
+            resize: none;
+            overflow-y: scroll;
+        }
+
+        .input {
+            display: block;
+            margin: 0 auto;
+            width: 1000px;
+        }
+
+        .footer {
+            position: fixed;
+            background-color: black;
+            color: orange;
+            padding: 5px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            font-size: 16px;
+        }
+
+        .foot {
+            color: white;
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            margin-right: 20px;
+            font-size: 16px;
+        }
+
+        .foot a{
+            color: white;
+            text-decoration: none;
+            font-size: 16px;
+        }
+
+        .foot a:not(:last-child) {
+            margin-right: 10px;
+        }
+
+        .foot a:not(:first-child) {
+            margin-left: 10px;
+        }
+
     </style>
 
     <div class="nav">
         <a href="">
-            <img src="{% static 'images/applogo.png' %}" alt="WordWell Icon" width="30" height="30" class="logo">
+            <img src="{% static 'images/applogo.png' %}" alt="WordWell Icon" width="20" height="20" class="logo">
         </a>
         <div class="icons">
             <a href="notifications">
@@ -68,44 +128,54 @@
             </a>
         </div>
     </div>
-
+</head>
+    
+<body align="center">
     <h1 align="center">Daedalean Prototype</h1>
     <form method="POST" action="{% url 'result' %}" align="center">
         {% csrf_token %}
-        <textarea name="text" rows="5" cols="50"></textarea><br>
+        <textarea name="text" rows="5" cols="50" class="text"></textarea><br>
         <input type="submit" value="Submit">
     </form>
 
-    <body align="center">
-        <div>
-            <strong>Inputted Text:</strong><br> {{text}} <br>
-            <br>
-            <br>
-            <strong>Number of Words:</strong><br> {{word_count}} <br>
-        </div>
+    <div class="input">
+        <strong>Inputted Text:</strong><br> {{text}} <br>
+        <br>
+        <br>
+        <strong>Number of Words:</strong><br> {{word_count}} <br>
+    </div>
+    <div class="parent">
+        <strong>Flesch Reading Ease (FRE) Score:</strong><br> 
+        <div class="child">{{fre}}</div><br>
+        <strong>Flesch-Kincaid Grade Level (FKRA):</strong><br> 
+        <div class="child">{{fkra}}</div><br>
+    </div>
         
-        <div class="parent">
-            <strong>Flesch Reading Ease (FRE) Score:</strong><br> 
-            <div class="child">{{fre}}</div><br>
-            <strong>Flesch-Kincaid Grade Level (FKRA):</strong><br> 
-            <div class="child">{{fkra}}</div><br>
-        </div>
+    <div class="parent">
+        <strong>Coleman-Liau Index:</strong><br> 
+        <div class="child">{{cli}}</div>
+    </div>
         
-        <div class="parent">
-            <strong>Coleman-Liau Index:</strong><br> 
-            <div class="child">{{cli}}</div>
-        </div>
-        
-        <div class="parent">
-            <strong>Simple Measure of Gobbledygook (SMOG) Index:</strong><br> 
-            <div class="child">{{smog}}</div>
-        </div>
+    <div class="parent">
+        <strong>Simple Measure of Gobbledygook (SMOG) Index:</strong><br> 
+        <div class="child">{{smog}}</div>
+    </div>
 
-        <div class="parent">
-            <strong>Automated Readability Index:</strong><br> 
-            <div class="child">{{ari}}</div>
-        </div>
-    </body>
+    <div class="parent">
+        <strong>Automated Readability Index:</strong><br> 
+        <div class="child">{{ari}}</div>
+    </div>
+</body>
 
-<h1 align="center">{{exception_string}}</h1>
-</head>
+<h3 align="center">{{exception_string}}</h3>
+
+<div class="footer">
+    POWERED BY (AND THE BRAINS BEHIND) WHATSWORDSWORTH
+
+    <div class="foot">
+        <a href="about">ABOUT</a>|
+        <a href="faq">FAQ</a>|
+        <a href="contact">CONTACT</a>
+    </div>
+
+</div>
