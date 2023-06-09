@@ -29,7 +29,6 @@
         }
 
         .nav {
-            position: fixed;
             background-color: black;
             color: #fff;
             padding: 5px;
@@ -38,7 +37,6 @@
             align-items: center;
             left: 0;
             top: 0;
-            width: 100%
         }
 
         .logo {
@@ -56,10 +54,6 @@
             margin-right: 10px;
         }
 
-        body {
-            padding-top: 50px;
-        }
-
         .text {
             font-size: 14px;
             font-weight: normal;
@@ -73,18 +67,27 @@
             width: 1000px;
         }
 
+        body {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            margin: 0;
+        }
+
+        .content {
+            flex-grow: 1;
+        }
+
         .footer {
-            position: fixed;
             background-color: black;
             color: orange;
             padding: 5px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            left: 0;
-            bottom: 0;
-            width: 100%;
             font-size: 16px;
+            left: 0;
+            margin-top: auto;
         }
 
         .foot {
@@ -112,6 +115,9 @@
 
     </style>
 
+</head>
+<body align="center">
+
     <div class="nav">
         <a href="">
             <img src="{% static 'images/applogo.png' %}" alt="WordWell Icon" width="20" height="20" class="logo">
@@ -128,46 +134,45 @@
             </a>
         </div>
     </div>
-</head>
-    
-<body align="center">
-    <h1 align="center">Daedalean Prototype</h1>
-    <form method="POST" action="{% url 'result' %}" align="center">
-        {% csrf_token %}
-        <textarea name="text" rows="5" cols="50" class="text"></textarea><br>
-        <input type="submit" value="Submit">
-    </form>
 
-    <div class="input">
-        <strong>Inputted Text:</strong><br> {{text}} <br>
-        <br>
-        <br>
-        <strong>Number of Words:</strong><br> {{word_count}} <br>
-    </div>
-    <div class="parent">
-        <strong>Flesch Reading Ease (FRE) Score:</strong><br> 
-        <div class="child">{{fre}}</div><br>
-        <strong>Flesch-Kincaid Grade Level (FKRA):</strong><br> 
-        <div class="child">{{fkra}}</div><br>
-    </div>
+    <div class="content">
+        <h1 align="center">Daedalean Prototype</h1>
+        <form method="POST" action="{% url 'result' %}" align="center">
+            {% csrf_token %}
+            <textarea name="text" rows="5" cols="50" class="text"></textarea><br>
+            <input type="submit" value="Submit">
+        </form>
+
+        <div class="input">
+            <strong>Inputted Text:</strong><br> {{text}} {{exception_string}} <br>
+            <br>
+            <br>
+            <strong>Number of Words:</strong><br> {{word_count}} <br>
+        </div>
+        <div class="parent">
+            <strong>Flesch Reading Ease (FRE) Score:</strong><br> 
+            <div class="child">{{fre}}</div><br>
+            <strong>Flesch-Kincaid Grade Level (FKRA):</strong><br> 
+            <div class="child">{{fkra}}</div><br>
+        </div>
         
-    <div class="parent">
-        <strong>Coleman-Liau Index:</strong><br> 
-        <div class="child">{{cli}}</div>
-    </div>
+        <div class="parent">
+            <strong>Coleman-Liau Index:</strong><br> 
+            <div class="child">{{cli}}</div>
+        </div>
         
-    <div class="parent">
-        <strong>Simple Measure of Gobbledygook (SMOG) Index:</strong><br> 
-        <div class="child">{{smog}}</div>
+        <div class="parent">
+            <strong>Simple Measure of Gobbledygook (SMOG) Index:</strong><br> 
+            <div class="child">{{smog}}</div>
+        </div>
+
+        <div class="parent">
+            <strong>Automated Readability Index:</strong><br> 
+            <div class="child">{{ari}}</div>
+        </div>
     </div>
 
-    <div class="parent">
-        <strong>Automated Readability Index:</strong><br> 
-        <div class="child">{{ari}}</div>
-    </div>
 </body>
-
-<h3 align="center">{{exception_string}}</h3>
 
 <div class="footer">
     POWERED BY (AND THE BRAINS BEHIND) WHATSWORDSWORTH
