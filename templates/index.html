@@ -2,6 +2,8 @@
 
 <head>
 
+    <script src="https://cdn.ckeditor.com/4.21.0/standard/ckeditor.js"></script>
+
     <style>
 
         .parent {
@@ -64,18 +66,20 @@
         .input {
             display: block;
             margin: 0 auto;
-            width: 1000px;
+            width: 50%;
         }
 
         body {
             display: flex;
             flex-direction: column;
+            justify-content: center;
             min-height: 100vh;
             margin: 0;
         }
 
         .content {
             flex-grow: 1;
+            text-align: center;
         }
 
         .footer {
@@ -113,6 +117,18 @@
             margin-left: 10px;
         }
 
+        .container {     /* For CKEditor 4*/
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            
+        }
+
+        .form-container {     /* For CKEditor 4*/
+            width: 75%;
+            text-align: center;
+        }
+
     </style>
 
 </head>
@@ -136,12 +152,22 @@
     </div>
 
     <div class="content">
-        <h1 align="center">Daedalean Prototype</h1>
-        <form method="POST" action="{% url 'result' %}" align="center">
-            {% csrf_token %}
-            <textarea name="text" rows="5" cols="50" class="text"></textarea><br>
-            <input type="submit" value="Submit">
-        </form>
+        <div class="container">     <!-- For CKEditor 4 -->
+            <div class="form-container">     <!-- For CKEditor 4 -->
+                <h1 align="center">Daedalean Prototype</h1>
+                <form method="POST" action="{% url 'result' %}">
+                    {% csrf_token %}
+                    
+                    <textarea name="text" rows="5" cols="50" class="text"></textarea><br>
+
+                    <script>     //For CKEditor 4
+                        CKEDITOR.replace('text');
+                    </script>
+                    
+                    <input type="submit" value="Submit">
+                </form>
+            </div>
+        </div>
 
         <div class="input">
             <strong>Inputted Text:</strong><br> {{text}} {{exception_string}} <br>
