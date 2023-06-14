@@ -37,4 +37,4 @@ def grading(text):
     #Calculate the Automated Readability Index
     ari = ariGrade(round((4.71 * (average_letters / 100) + 0.5 * average_sentence_length - 21.43), 3))
 
-    return word_count, fre, fkra, cli, smog, ari
+    return word_count, sentence_count, fre, fkra, cli, smog, ari
