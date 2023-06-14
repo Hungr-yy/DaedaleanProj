@@ -146,6 +146,11 @@
             margin-right: 20px;
         }
 
+        h5 {
+            font-size: 20;
+            color: red;
+        }
+
     </style>
 
 </head>
@@ -187,7 +192,10 @@
         </div>
 
         <div class="input">
-            <strong>Inputted Text:</strong><br> {{text}} <span style="font-size: 30px">{{exception_string}}</span> <br>
+            <strong>Inputted Text:</strong><br> {{text}} 
+            {% for message in messages %}
+            <h5>{{message}}</h5>
+            {% endfor %} <br>
             <br>
             <div class="count_container">
                 <div class="count">
