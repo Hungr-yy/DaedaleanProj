@@ -6,12 +6,20 @@
 
     <style>
 
+        .parent_container {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            margin: 0 auto;
+        }
+
         .parent {
+            flex: 1 0 auto;
             display: inline-block;
-            width: 350px;
+            width: 10%;
             height: 80px;
             margin: 10px;
-            padding: 20px;
+            padding: 0.5%;
             border: 1px solid black;
             border-radius: 10px;
             vertical-align: middle;
@@ -21,7 +29,7 @@
 
         .child{
             display: inline-block;
-            width: 250px;
+            width: 80%;
             height: 20px;
             border: 1px solid rgb(255, 215, 0);
             border-radius: 5px;
@@ -129,6 +137,15 @@
             text-align: center;
         }
 
+        .count_container {
+            display: flex;
+        }
+
+        .count {
+            flex: 1;
+            margin-right: 20px;
+        }
+
     </style>
 
 </head>
@@ -170,31 +187,39 @@
         </div>
 
         <div class="input">
-            <strong>Inputted Text:</strong><br> {{text}} {{exception_string}} <br>
+            <strong>Inputted Text:</strong><br> {{text}} <span style="font-size: 30px">{{exception_string}}</span> <br>
             <br>
-            <br>
-            <strong>Number of Words:</strong><br> {{word_count}} <br>
+            <div class="count_container">
+                <div class="count">
+                    <strong>Word Count:</strong><br> {{word_count}} <br>
+                </div>
+                <div class="count">
+                    <strong>Sentence Count:</strong><br> {{sentence_count}} <br>
+                </div>
+            </div>
         </div>
-        <div class="parent">
-            <strong>Flesch Reading Ease (FRE) Score:</strong><br> 
-            <div class="child">{{fre}}</div><br>
-            <strong>Flesch-Kincaid Grade Level (FKRA):</strong><br> 
-            <div class="child">{{fkra}}</div><br>
-        </div>
-        
-        <div class="parent">
-            <strong>Coleman-Liau Index:</strong><br> 
-            <div class="child">{{cli}}</div>
-        </div>
-        
-        <div class="parent">
-            <strong>Simple Measure of Gobbledygook (SMOG) Index:</strong><br> 
-            <div class="child">{{smog}}</div>
-        </div>
+        <div class="parent_container">
+            <div class="parent">
+                <strong>Flesch Reading Ease (FRE) Score:</strong><br> 
+                <div class="child">{{fre}}</div><br>
+                <strong>Flesch-Kincaid Grade Level (FKRA):</strong><br> 
+                <div class="child">{{fkra}}</div><br>
+            </div>
+            
+            <div class="parent">
+                <strong>Coleman-Liau Index:</strong><br> 
+                <div class="child">{{cli}}</div>
+            </div>
+            
+            <div class="parent">
+                <strong>Simple Measure of Gobbledygook (SMOG) Index:</strong><br> 
+                <div class="child">{{smog}}</div>
+            </div>
 
-        <div class="parent">
-            <strong>Automated Readability Index:</strong><br> 
-            <div class="child">{{ari}}</div>
+            <div class="parent">
+                <strong>Automated Readability Index:</strong><br> 
+                <div class="child">{{ari}}</div>
+            </div>
         </div>
     </div>
 
