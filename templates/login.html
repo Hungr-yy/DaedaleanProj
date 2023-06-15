@@ -1,4 +1,4 @@
-<!-- This code is from https://www.javatpoint.com/html-login-form -->
+<!-- This code is from https://www.javatpoint.com/html-login-form
 
 <head>  
     <meta name="viewport" content="width=device-width, initial-scale=1">  
@@ -59,3 +59,30 @@
             </div>   
         </form>     
     </body>     
+
+-->
+
+<head>
+
+    <style>
+        h3 {
+            color: red;
+        }
+    </style>
+
+</head>
+
+<h1>Login Now</h1>
+
+{% for message in messages %}
+<h3>{{message}}</h3>
+{% endfor %}
+<form action="login" method="POST">
+    {% csrf_token %}
+
+    <p>Username:</p>
+    <input type="text" name="username" />
+    <p>Password:</p>
+    <input type="password" name="password" /><br>
+    <input type="submit" value="Login" />
+</form>
