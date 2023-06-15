@@ -6,9 +6,6 @@ from .grading import *
 import re
 import html
 
-def index(request):
-    return render(request, 'index.html')
-
 def register(request):
     if request.method == 'POST':
         username = request.POST['username']
@@ -37,27 +34,41 @@ def register(request):
         return render(request, 'register.html')
 
 def login(request):
-    return render(request, 'login.html')
+    if request.method == 'POST':
+        username = request.POST['username']
+        password = request.POST['password']
 
-def result(request):
-    text = None
+        user = auth.authenticate(username=username, password=password)
+
+        if user is not None:
+            auth.login(request, user)
+            return redirect('/')
+        else:
+            messages.info(request, 'Credentials Invalid')
+            return redirect ('login')
+    else:
+        return render(request, 'login.html')
+
+def index(request):
 
     if request.method == 'POST':
         text = request.POST.get('text')
 
-    pattern = r"<.*?>"
-    text = html.unescape(text)
-    text = re.sub(pattern, "", text)
+        pattern = r"<.*?>"
+        text = html.unescape(text)
+        text = re.sub(pattern, "", text)
 
-    if len(text.split()) == 0:
-        messages.info(request, 'No words detected!')
-        return redirect('index')
-    elif ((text.count('.') + text.count('!') + text.count('?')) == 0 and len(text.split()) != 0):
-        messages.info(request, 'No sentences detected!')
-        return redirect('index')
-    elif text[0] == "!" or text[0] == "?" or text[0] == "." or text[0] == ",":
-        messages.info(request, 'Invalid starting character!')
-        return redirect('index')
+        if len(text.split()) == 0:
+            messages.info(request, 'No words detected!')
+            return redirect('index')
+        elif ((text.count('.') + text.count('!') + text.count('?')) == 0 and len(text.split()) != 0):
+            messages.info(request, 'No sentences detected!')
+            return redirect('index')
+        elif text[0] == "!" or text[0] == "?" or text[0] == "." or text[0] == ",":
+            messages.info(request, 'Invalid starting character!')
+            return redirect('index')
+        else:
+            word_count, sentence_count, fre, fkra, cli, smog, ari = grading(text)
+            return render(request, 'index.html', {'text': text, 'word_count': word_count, 'sentence_count': sentence_count, 'fre': fre, 'fkra': fkra, 'cli': cli, 'smog': smog, 'ari': ari})
     else:
-        word_count, sentence_count, fre, fkra, cli, smog, ari = grading(text)
-        return render(request, 'index.html', {'text': text, 'word_count': word_count, 'sentence_count': sentence_count, 'fre': fre, 'fkra': fkra, 'cli': cli, 'smog': smog, 'ari': ari})
+        return render(request, 'index.html')
