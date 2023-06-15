@@ -1,4 +1,4 @@
-<h1>Sign Up Below</h1>
+{% load static %}
 
 <head>
 
@@ -6,24 +6,165 @@
         h5 {
             color: red;
         }
+
+        body {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            margin: 0;
+        }
+
+        .main_box {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            padding: 50px;
+            border-radius: 10px;
+            border: 1px solid black;
+        }
+        
+        .content {
+            flex-grow: 1;
+            text-align: center;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .nav {
+            background-color: black;
+            color: #fff;
+            padding: 5px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            left: 0;
+            top: 0;
+        }
+
+        .logo {
+            margin-left: 10px;
+        }
+
+        .icons {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            margin-right: 20px;
+        }
+
+        .icons a:not(:last-child) {
+            margin-right: 10px;
+        }
+
+        .footer {
+            background-color: black;
+            color: orange;
+            padding: 5px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 16px;
+            left: 0;
+        }
+
+        .foot {
+            color: white;
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            margin-right: 20px;
+            font-size: 16px;
+        }
+
+        .foot a{
+            color: white;
+            text-decoration: none;
+            font-size: 16px;
+        }
+
+        .foot a:not(:last-child) {
+            margin-right: 10px;
+        }
+
+        .foot a:not(:first-child) {
+            margin-left: 10px;
+        }
+
+        .input_line {
+            border: none;
+            border-bottom: 1px solid black;
+            outline: none;
+            padding: 0;
+            font-family: inherit;
+            font-size: inherit;
+            width: 100%;
+            box-sizing: border-box;
+    }
+
     </style>
 
 </head>
 
-{% for message in messages %}
-<h5>{{message}}</h5>
-{% endfor %}
+<body>
+    <div class="nav">
+        <a href="/">
+            <img src="{% static 'images/applogo.png' %}" alt="WordWell Icon" width="20" height="20" class="logo">
+        </a>
+        <div class="icons">
+            <a href="notifications">
+                <img src="{% static 'images/notifications.png' %}" alt="Notifications" width="20" height="20">
+            </a>
+            
+            {% if user.is_authenticated %}
+            <a href="logout">
+                <img src="{% static 'images/login.png' %}" alt="Logout" width="20" height="20">
+            </a>
+            {% else %}
+            <a href="login">
+                <img src="{% static 'images/login.png' %}" alt="Login" width="20" height="20">
+            </a>
+            {% endif %}
+            
+            <a href="settings">
+                <img src="{% static 'images/settings.png' %}" alt="Settings" width="20" height="20">
+            </a>
+        </div>
+    </div>
+    <div class="content">
+        <div class="main_box">
+            <h1 align="left">SIGN UP</h1>
 
-<form method="POST" action="register">
-    {% csrf_token %}
+            <form method="POST" action="register">
+                {% csrf_token %}
 
-    <p>Username:</p>
-    <input type="text" name="username" />
-    <p>Email:</p>
-    <input type="email" name="email" />
-    <p>Password (at least 8 characters long):</p>
-    <input type="password" name="password" />
-    <p>Confirm Password:</p>
-    <input type="password" name="password2" /> <br>
-    <input type="submit" value="Register" />
-</form>
+                <p>FIRST NAME</p>
+                <input class="input_line" type="text" name="username" />
+                <p>LAST NAME</p>
+                <input class="input_line" type="text" name="username" />
+                <p>EMAIL</p>
+                <input class="input_line" type="email" name="email" />
+                <p>PASSWORD</p>
+                <input class="input_line" type="password" name="password" />
+                <p>CONFIRM PASSWORD</p>
+                <input class="input_line" type="password" name="password2" /> <br>
+                <input type="submit" value="Register" />
+            </form>
+
+            {% for message in messages %}
+            <h5>{{message}}</h5>
+            {% endfor %}
+        </div>
+    </div>
+</body>
+
+<footer class="footer">
+    POWERED BY (AND THE BRAINS BEHIND) WHATSWORDSWORTH
+
+    <div class="foot">
+        <a href="about">ABOUT</a>|
+        <a href="faq">FAQ</a>|
+        <a href="contact">CONTACT</a>
+    </div>
+
+</footer>
