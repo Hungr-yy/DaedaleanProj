@@ -3,7 +3,7 @@
 <head>
 
     <style>
-        h5 {
+        h3 {
             color: red;
         }
 
@@ -16,13 +16,20 @@
 
         .main_box {
             position: relative;
-            top: 50%;
+            top: 55%;
             left: 50%;
             transform: translate(-50%, -50%);
-            padding: 50px;
-            border-radius: 10px;
+            padding: 40px;
+            border-radius: 20px;
             border: 1px solid black;
             width: 25%;
+        }
+
+        .sub_box {
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 85px;
+            text-align: center;
         }
         
         .content {
@@ -30,6 +37,7 @@
             text-align: center;
             justify-content: center;
             align-items: center;
+            padding: 50px;
         }
 
         .nav {
@@ -95,15 +103,67 @@
 
         .input_line {
             border: none;
-            border-bottom: 1px solid black;
+            border-bottom: 1px solid rgb(167, 167, 167);
             outline: none;
             padding: 0;
             font-family: inherit;
             font-size: inherit;
             width: 100%;
             box-sizing: border-box;
-    }
+            margin: 0 auto;
+        }
 
+        .name {
+            overflow: hidden;
+            flex-wrap: wrap;
+            
+        }
+
+        .fname {
+            float: left;
+            flex: 1;
+            width: 45%;
+        }
+
+        .lname {
+            float: right;
+            flex: 1;
+            width: 45%;
+        }
+
+        .submit_button {
+            background-color: goldenrod;
+            padding: 15px 80px;
+            font-size: 16px;
+            font-weight: bold;
+            border-radius: 20px;
+            outline: none;
+            border: none;
+            cursor: pointer;
+        }
+
+        .login {
+            background-color: white;
+            padding: 15px 80px;
+            font-size: 16px;
+            font-weight: bold;
+            border-radius: 20px;
+            outline: none;
+            border: none;
+            text-decoration: none;
+            color: black;
+            border: 1px solid black;
+            cursor: pointer;
+        }
+
+        .tos {
+            color: black;
+        }
+        
+        p {
+            color: rgb(167, 167, 167);
+        }
+        
     </style>
 
 </head>
@@ -139,26 +199,41 @@
 
             <form method="POST" action="register">
                 {% csrf_token %}
-
-                <p>FIRST NAME</p>
-                <input class="input_line" type="text" name="username" />
-                <p>LAST NAME</p>
-                <input class="input_line" type="text" name="username" />
-                <p>EMAIL</p>
+                
+                <div class="name">
+                    <div class="fname">
+                        <p align="left">FIRST NAME</p>
+                        <input class="input_line" type="text" name="first_name" />
+                    </div>
+                    <div class="lname">
+                        <p align="left">LAST NAME</p>
+                        <input class="input_line" type="text" name="last_name" />
+                    </div>
+                </div>
+                <p align="left">EMAIL</p>
                 <input class="input_line" type="email" name="email" />
-                <p>PASSWORD</p>
+                <p align="left">PASSWORD</p>
                 <input class="input_line" type="password" name="password" />
-                <p>CONFIRM PASSWORD</p>
-                <input class="input_line" type="password" name="password2" /> <br>
-                <input type="submit" value="Register" />
+                <p align="left">CONFIRM PASSWORD</p>
+                <input class="input_line" type="password" name="password2" />
+                <br><br><br>
+                <a class="tos" align="center" href="tos" target="_blank">TERMS AND CONDITIONS</span>
+                <br><br><br>
+                <input class="submit_button" type="submit" value="SIGN UP" />
             </form>
 
             {% for message in messages %}
-            <h5>{{message}}</h5>
+            <h3>{{message}}</h3>
             {% endfor %}
         </div>
     </div>
 </body>
+
+<div class="sub_box">
+    <a align="center" href="login">
+        <input class="login" type="submit" value="LOGIN" />
+    </a>
+</div>
 
 <footer class="footer">
     POWERED BY (AND THE BRAINS BEHIND) WHATSWORDSWORTH
