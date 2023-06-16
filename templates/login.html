@@ -1,66 +1,4 @@
-<!-- This code is from https://www.javatpoint.com/html-login-form
-
-<head>  
-    <meta name="viewport" content="width=device-width, initial-scale=1">  
-    <title> Login Page </title>  
-    <style>   
-    Body {  
-      font-family: Calibri, Helvetica, sans-serif;  
-      background-color: pink;  
-    }  
-    button {   
-           background-color: #4CAF50;   
-           width: 100%;  
-            color: orange;   
-            padding: 15px;   
-            margin: 10px 0px;   
-            border: none;   
-            cursor: pointer;   
-             }   
-     form {   
-            border: 3px solid #f1f1f1;   
-        }   
-     input[type=text], input[type=password] {   
-            width: 100%;   
-            margin: 8px 0;  
-            padding: 12px 20px;   
-            display: inline-block;   
-            border: 2px solid green;   
-            box-sizing: border-box;   
-        }  
-     button:hover {   
-            opacity: 0.7;   
-        }   
-      .cancelbtn {   
-            width: auto;   
-            padding: 10px 18px;  
-            margin: 10px 5px;  
-        }   
-            
-         
-     .container {   
-            padding: 25px;   
-            background-color: lightblue;  
-        }   
-    </style>   
-    </head>    
-    <body>    
-        <center> <h1> Student Login Form </h1> </center>   
-        <form>  
-            <div class="container">   
-                <label>Username : </label>   
-                <input type="text" placeholder="Enter Username" name="username" required>  
-                <label>Password : </label>   
-                <input type="password" placeholder="Enter Password" name="password" required>  
-                <button type="submit">Login</button>   
-                <input type="checkbox" checked="checked"> Remember me   
-                <button type="button" class="cancelbtn"> Cancel</button>   
-                Forgot <a href="#"> password? </a>   
-            </div>   
-        </form>     
-    </body>     
-
--->
+{% load static %}
 
 <head>
 
@@ -68,21 +6,213 @@
         h3 {
             color: red;
         }
+
+        body {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            margin: 0;
+        }
+
+        .main_box {
+            position: relative;
+            top: 55%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            padding: 40px;
+            border-radius: 20px;
+            border: 1px solid black;
+            width: 25%;
+            background-color: rgb(231, 231, 231);
+            padding-top: 60px;
+            padding-bottom: 60px;
+        }
+
+        .sub_box {
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 8%;
+            text-align: center;
+        }
+        
+        .content {
+            flex-grow: 1;
+            text-align: center;
+            justify-content: center;
+            align-items: center;
+            padding: 50px;
+            padding-top: 100px;
+        }
+
+        .nav {
+            background-color: black;
+            color: #fff;
+            padding: 5px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            left: 0;
+            top: 0;
+        }
+
+        .logo {
+            margin-left: 10px;
+        }
+
+        .icons {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            margin-right: 20px;
+        }
+
+        .icons a:not(:last-child) {
+            margin-right: 10px;
+        }
+
+        .footer {
+            background-color: black;
+            color: orange;
+            padding: 5px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 16px;
+            left: 0;
+            bottom: 0;
+        }
+
+        .foot {
+            color: white;
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            margin-right: 20px;
+            font-size: 16px;
+        }
+
+        .foot a{
+            color: white;
+            text-decoration: none;
+            font-size: 16px;
+        }
+
+        .foot a:not(:last-child) {
+            margin-right: 10px;
+        }
+
+        .foot a:not(:first-child) {
+            margin-left: 10px;
+        }
+
+        .input_line {
+            border: none;
+            border-bottom: 1px solid black;
+            outline: none;
+            padding: 0;
+            font-family: inherit;
+            font-size: inherit;
+            width: 100%;
+            box-sizing: border-box;
+            margin: 0 auto;
+            background-color: rgb(231, 231, 231);
+        }
+
+        .submit_button {
+            background-color: black;
+            padding: 15px 80px;
+            font-size: 16px;
+            font-weight: bold;
+            border-radius: 20px;
+            outline: none;
+            border: none;
+            cursor: pointer;
+            color: goldenrod;
+        }
+
+        .register {
+            background-color: white;
+            padding: 15px 70px;
+            font-size: 16px;
+            font-weight: bold;
+            border-radius: 20px;
+            outline: none;
+            border: none;
+            text-decoration: none;
+            color: black;
+            border: 1px solid black;
+            cursor: pointer;
+        }
+
+        .passwordreset {
+            color: black;
+        }
+        
     </style>
 
 </head>
 
-<h1>Login Now</h1>
+<body>
+    <div class="nav">
+        <a href="/">
+            <img src="{% static 'images/applogo.png' %}" alt="WordWell Icon" width="20" height="20" class="logo">
+        </a>
+        <div class="icons">
+            <a href="notifications">
+                <img src="{% static 'images/notifications.png' %}" alt="Notifications" width="20" height="20">
+            </a>
+            
+            {% if user.is_authenticated %}
+            <a href="logout">
+                <img src="{% static 'images/login.png' %}" alt="Logout" width="20" height="20">
+            </a>
+            {% else %}
+            <a href="login">
+                <img src="{% static 'images/login.png' %}" alt="Login" width="20" height="20">
+            </a>
+            {% endif %}
+            
+            <a href="settings">
+                <img src="{% static 'images/settings.png' %}" alt="Settings" width="20" height="20">
+            </a>
+        </div>
+    </div>
+    <div class="content">
+        <div class="main_box">
+            <h1 align="left">LOGIN</h1>
 
-{% for message in messages %}
-<h3>{{message}}</h3>
-{% endfor %}
-<form action="login" method="POST">
-    {% csrf_token %}
+            <form method="POST" action="login">
+                {% csrf_token %}
+                <p align="left">EMAIL</p>
+                <input class="input_line" type="email" name="email" />
+                <p align="left">PASSWORD</p>
+                <input class="input_line" type="password" name="password" />
+                <br><br><br>
+                <input class="submit_button" type="submit" value="LOGIN" />
+                <br><br><br>
+                <a class="passwordreset" align="center" href="passwordreset" target="_blank">FORGOT PASSWORD</span>
+            </form>
 
-    <p>Username:</p>
-    <input type="text" name="username" />
-    <p>Password:</p>
-    <input type="password" name="password" /><br>
-    <input type="submit" value="Login" />
-</form>
+            {% for message in messages %}
+            <h3>{{message}}</h3>
+            {% endfor %}
+        </div>
+    </div>
+</body>
+
+<div class="sub_box">
+    <a align="center" href="register">
+        <input class="register" type="submit" value="SIGN UP" />
+    </a>
+</div>
+
+<footer class="footer">
+    POWERED BY (AND THE BRAINS BEHIND) WHATSWORDSWORTH
+
+    <div class="foot">
+        <a href="about">ABOUT</a>|
+        <a href="faq">FAQ</a>|
+        <a href="contact">CONTACT</a>
+    </div>
+
+</footer>
