@@ -39,8 +39,8 @@
         }
 
         .nav {
-            background-color: black;
-            color: #fff;
+            border-bottom: 1px solid rgb(255, 128, 25);
+            color: white;
             padding: 5px;
             display: flex;
             justify-content: space-between;
@@ -57,7 +57,7 @@
             display: flex;
             justify-content: flex-end;
             align-items: center;
-            margin-right: 20px;
+            margin-right: 10px;
         }
 
         .icons a:not(:last-child) {
@@ -68,7 +68,6 @@
             font-size: 14px;
             font-weight: normal;
             resize: none;
-            overflow-y: scroll;
         }
 
         .input {
@@ -91,8 +90,8 @@
         }
 
         .footer {
-            background-color: black;
-            color: orange;
+            background-color: rgb(255, 128, 25);
+            color: black;
             padding: 5px;
             display: flex;
             justify-content: space-between;
@@ -107,7 +106,7 @@
             display: flex;
             justify-content: flex-end;
             align-items: center;
-            margin-right: 20px;
+            margin-right: 10px;
             font-size: 16px;
         }
 
@@ -125,18 +124,6 @@
             margin-left: 10px;
         }
 
-        .container {     /* For CKEditor 4*/
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            
-        }
-
-        .form-container {     /* For CKEditor 4*/
-            width: 75%;
-            text-align: center;
-        }
-
         .count_container {
             display: flex;
         }
@@ -149,6 +136,10 @@
         h5 {
             font-size: 20;
             color: red;
+        }
+
+        .credits {
+            margin-left: 10px;
         }
 
     </style>
@@ -182,27 +173,17 @@
     </div>
 
     <div class="content">
-        <div class="container">     <!-- For CKEditor 4 -->
-            <div class="form-container">     <!-- For CKEditor 4 -->
-
-                {% if user.is_authenticated %}
-                <h1 align="center">Welcome, {{user.username}}</h1>
-                {% else %}
-                <h1 align="center">Daedalean Prototype</h1>
-                {% endif %}
-                <form method="POST">
-                    {% csrf_token %}
+        {% if user.is_authenticated %}
+        <h1 align="center">Welcome, {{user.first_name}} {{user.last_name}}</h1>
+        {% else %}
+        <h1 align="center">Daedalean Prototype</h1>
+        {% endif %}
+        <form method="POST">
+            {% csrf_token %}
                     
-                    <textarea name="text" rows="5" cols="50" class="text"></textarea><br>
-
-                    <script>     //For CKEditor 4
-                        CKEDITOR.replace('text');
-                    </script>
-                    
-                    <input type="submit" value="Submit" />
-                </form>
-            </div>
-        </div>
+            <textarea name="text" rows="10" cols="100" class="text"></textarea><br>              
+            <input type="submit" value="Submit" />
+        </form>
 
         <div class="input">
             <strong>Inputted Text:</strong><br> {{text}} 
@@ -247,7 +228,9 @@
 </body>
 
 <footer class="footer">
-    POWERED BY (AND THE BRAINS BEHIND) WHATSWORDSWORTH
+    <div class="credits">
+        POWERED BY (AND THE BRAINS BEHIND) - WHATSWORDSWORTH
+    </div>
 
     <div class="foot">
         <a href="about">ABOUT</a>|
