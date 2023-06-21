@@ -21,7 +21,7 @@
             transform: translate(-50%, -50%);
             padding: 40px;
             border-radius: 20px;
-            border: 1px solid black;
+            border: 1px solid rgb(255, 128, 25);
             width: 25%;
         }
 
@@ -41,8 +41,8 @@
         }
 
         .nav {
-            background-color: black;
-            color: #fff;
+            border-bottom: 1px solid rgb(255, 128, 25);
+            color: white;
             padding: 5px;
             display: flex;
             justify-content: space-between;
@@ -59,7 +59,7 @@
             display: flex;
             justify-content: flex-end;
             align-items: center;
-            margin-right: 20px;
+            margin-right: 10px;
         }
 
         .icons a:not(:last-child) {
@@ -67,15 +67,15 @@
         }
 
         .footer {
-            background-color: black;
-            color: orange;
+            background-color: rgb(255, 128, 25);
+            color: black;
             padding: 5px;
             display: flex;
             justify-content: space-between;
             align-items: center;
             font-size: 16px;
             left: 0;
-            bottom: 0;
+            margin-top: auto;
         }
 
         .foot {
@@ -83,7 +83,7 @@
             display: flex;
             justify-content: flex-end;
             align-items: center;
-            margin-right: 20px;
+            margin-right: 10px;
             font-size: 16px;
         }
 
@@ -132,7 +132,8 @@
         }
 
         .submit_button {
-            background-color: goldenrod;
+            background-color: rgb(255, 128, 25);
+            color: white;
             padding: 15px 80px;
             font-size: 16px;
             font-weight: bold;
@@ -151,8 +152,8 @@
             outline: none;
             border: none;
             text-decoration: none;
-            color: black;
-            border: 1px solid black;
+            color: rgb(255, 128, 25);
+            border: 1px solid rgb(255, 128, 25);
             cursor: pointer;
         }
 
@@ -162,6 +163,10 @@
         
         p {
             color: rgb(167, 167, 167);
+        }
+
+        .credits {
+            margin-left: 10px;
         }
         
     </style>
@@ -236,7 +241,9 @@
 </div>
 
 <footer class="footer">
-    POWERED BY (AND THE BRAINS BEHIND) WHATSWORDSWORTH
+    <div class="credits">
+        POWERED BY (AND THE BRAINS BEHIND) - WHATSWORDSWORTH
+    </div>
 
     <div class="foot">
         <a href="about">ABOUT</a>|
