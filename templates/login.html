@@ -45,8 +45,8 @@
         }
 
         .nav {
-            background-color: black;
-            color: #fff;
+            border-bottom: 1px solid rgb(255, 128, 25);
+            color: white;
             padding: 5px;
             display: flex;
             justify-content: space-between;
@@ -63,7 +63,7 @@
             display: flex;
             justify-content: flex-end;
             align-items: center;
-            margin-right: 20px;
+            margin-right: 10px;
         }
 
         .icons a:not(:last-child) {
@@ -71,15 +71,15 @@
         }
 
         .footer {
-            background-color: black;
-            color: orange;
+            background-color: rgb(255, 128, 25);
+            color: black;
             padding: 5px;
             display: flex;
             justify-content: space-between;
             align-items: center;
             font-size: 16px;
             left: 0;
-            bottom: 0;
+            margin-top: auto;
         }
 
         .foot {
@@ -87,7 +87,7 @@
             display: flex;
             justify-content: flex-end;
             align-items: center;
-            margin-right: 20px;
+            margin-right: 10px;
             font-size: 16px;
         }
 
@@ -119,7 +119,7 @@
         }
 
         .submit_button {
-            background-color: black;
+            background-color: rgb(255, 128, 25);
             padding: 15px 80px;
             font-size: 16px;
             font-weight: bold;
@@ -127,7 +127,7 @@
             outline: none;
             border: none;
             cursor: pointer;
-            color: goldenrod;
+            color: white;
         }
 
         .register {
@@ -139,13 +139,21 @@
             outline: none;
             border: none;
             text-decoration: none;
-            color: black;
-            border: 1px solid black;
+            color: rgb(255, 128, 25);
+            border: 1px solid rgb(255, 128, 25);
             cursor: pointer;
         }
 
         .passwordreset {
             color: black;
+        }
+
+        .credits {
+            margin-left: 10px;
+        }
+
+        h1 {
+            color: rgb(255, 128, 25);
         }
         
     </style>
@@ -185,6 +193,10 @@
                 {% csrf_token %}
                 <p align="left">EMAIL</p>
                 <input class="input_line" type="email" name="email" />
+                <!-- If using username in default User model for login
+                <p align="left">USERNAME</p>
+                <input class="input_line" type="username" name="username" />
+                -->
                 <p align="left">PASSWORD</p>
                 <input class="input_line" type="password" name="password" />
                 <br><br><br>
@@ -207,7 +219,9 @@
 </div>
 
 <footer class="footer">
-    POWERED BY (AND THE BRAINS BEHIND) WHATSWORDSWORTH
+    <div class="credits">
+        POWERED BY (AND THE BRAINS BEHIND) - WHATSWORDSWORTH
+    </div>
 
     <div class="foot">
         <a href="about">ABOUT</a>|
