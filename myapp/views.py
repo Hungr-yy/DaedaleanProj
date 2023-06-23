@@ -11,10 +11,6 @@ def index(request):
     if request.method == 'POST':
         text = request.POST.get('text')
 
-        pattern = r"<.*?>"
-        text = html.unescape(text)
-        text = re.sub(pattern, "", text)
-
         if len(text.split()) == 0:
             messages.info(request, 'No words detected!')
             return redirect('index')
