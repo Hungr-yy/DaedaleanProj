@@ -191,12 +191,8 @@
 
             <form method="POST" action="login">
                 {% csrf_token %}
-                <p align="left">EMAIL</p>
-                <input class="input_line" type="email" name="email" />
-                <!-- If using username in default User model for login
-                <p align="left">USERNAME</p>
-                <input class="input_line" type="username" name="username" />
-                -->
+                <p align="left">PHONE NUMBER</p>
+                <input class="input_line" type="text" name="phone" />
                 <p align="left">PASSWORD</p>
                 <input class="input_line" type="password" name="password" />
                 <br><br><br>
