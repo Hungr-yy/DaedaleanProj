@@ -3,8 +3,6 @@ from django.http import HttpResponse
 from django.contrib.auth.models import User, auth
 from django.contrib import messages
 from .grading import *
-import re
-import html
 
 def index(request):
 
@@ -30,11 +28,12 @@ def register(request):
     if request.method == 'POST':
         first_name = request.POST['first_name']
         last_name = request.POST['last_name']
+        phone = request.POST['phone']
         email = request.POST['email']
         password = request.POST['password']
         password2 = request.POST['password2']
 
-        if first_name == "" or last_name == "" or email == "" or password == "" or password2 == "":
+        if first_name == "" or last_name == "" or phone == "" or email == "" or password == "" or password2 == "":
             messages.info(request, 'Incomplete fields.')
             return redirect('register')
 
@@ -45,11 +44,14 @@ def register(request):
             elif User.objects.filter(first_name=first_name, last_name=last_name).exists():
                 messages.info(request, 'This name is already in use.')
                 return redirect('register')
+            elif User.objects.filter(username=phone).exists():
+                messages.info(request, 'This phone number is already in use.')
+                return redirect('register')
             elif len(password) < 8:
                 messages.info(request, 'Password must be at least 8 characters long.')
                 return redirect('register')
             else:
-                user = User.object.create_user(first_name=first_name, last_name=last_name, email=email, password=password)
+                user = User.objects.create_user(first_name=first_name, last_name=last_name, username=phone, email=email, password=password)
                 user.save()
                 return redirect('login')
         else:
@@ -60,10 +62,10 @@ def register(request):
 
 def login(request):
     if request.method == 'POST':
-        email = request.POST['email']
+        phone = request.POST['phone']
         password = request.POST['password']
 
-        user = auth.authenticate(email=email, password=password)
+        user = auth.authenticate(username=phone, password=password)
 
         if user is not None:
             auth.login(request, user)
