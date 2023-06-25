@@ -20,6 +20,10 @@ def index(request):
             return redirect('index')
         else:
             word_count, sentence_count, fre, fkra, cli, smog, ari = grading(text)
+
+            if word_count <= 100:
+                cli = "Error: Text too short!"
+                smog = "Error: Text too short!"
             return render(request, 'index.html', {'text': text, 'word_count': word_count, 'sentence_count': sentence_count, 'fre': fre, 'fkra': fkra, 'cli': cli, 'smog': smog, 'ari': ari})
     else:
         return render(request, 'index.html')
