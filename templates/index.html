@@ -140,6 +140,18 @@
             margin-left: 10px;
         }
 
+        .submit_button {
+            background-color: rgb(255, 128, 25);
+            color: white;
+            padding: 13px 50px;
+            font-size: 14px;
+            font-weight: bold;
+            border-radius: 20px;
+            outline: none;
+            border: none;
+            cursor: pointer;
+        }
+
     </style>
 
 </head>
@@ -179,25 +191,10 @@
         <form method="POST">
             {% csrf_token %}
                     
-            <textarea name="text" rows="10" cols="100" class="text"></textarea><br>              
-            <input type="submit" value="Submit" />
+            <textarea name="text" rows="10" cols="100" class="text"></textarea><br><br>
+            <input class="submit_button" type="submit" value="Submit" />
         </form>
 
-        <div class="input">
-            <strong>Inputted Text:</strong><br> {{text}} 
-            {% for message in messages %}
-            <h5>{{message}}</h5>
-            {% endfor %} <br>
-            <br>
-            <div class="count_container">
-                <div class="count">
-                    <strong>Word Count:</strong><br> {{word_count}} <br>
-                </div>
-                <div class="count">
-                    <strong>Sentence Count:</strong><br> {{sentence_count}} <br>
-                </div>
-            </div>
-        </div>
         <div class="parent_container">
             <div class="parent">
                 <strong>Flesch Reading Ease (FRE) Score:</strong><br> 
@@ -221,6 +218,23 @@
                 <div class="child">{{ari}}</div>
             </div>
         </div>
+
+        <div class="input">
+            <strong>Inputted Text:</strong><br> {{text}} 
+            {% for message in messages %}
+            <h5>{{message}}</h5>
+            {% endfor %} <br>
+            <br>
+            <div class="count_container">
+                <div class="count">
+                    <strong>Word Count:</strong><br> {{word_count}} <br>
+                </div>
+                <div class="count">
+                    <strong>Sentence Count:</strong><br> {{sentence_count}} <br>
+                </div>
+            </div>
+        </div>
+
     </div>
 
 </body>
