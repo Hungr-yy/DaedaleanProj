@@ -60,8 +60,8 @@ def count_syllables(word): #Credits: https://github.com/eaydin/sylco/blob/master
     # if it has only 1 vowel or 1 set of consecutive vowels, discard. (like "speed", "fled" etc.)
 
     if word[-2:] == "es" or word[-2:] == "ed" :
-        doubleAndtripple_1 = len(re.findall(r'[eaoui][eaoui]',word))
-        if doubleAndtripple_1 > 1 or len(re.findall(r'[eaoui][^eaoui]',word)) > 1 :
+        doubleAndtriple_1 = len(re.findall(r'[eaoui][eaoui]',word))
+        if doubleAndtriple_1 > 1 or len(re.findall(r'[eaoui][^eaoui]',word)) > 1 :
             if word[-3:] == "ted" or word[-3:] == "tes" or word[-3:] == "ses" or word[-3:] == "ied" or word[-3:] == "ies" :
                 pass
             else :
@@ -80,9 +80,9 @@ def count_syllables(word): #Credits: https://github.com/eaydin/sylco/blob/master
     
     #4) check if consecutive vowels exists, triplets or pairs, count them as one.
 
-    doubleAndtripple = len(re.findall(r'[eaoui][eaoui]',word))
-    tripple = len(re.findall(r'[eaoui][eaoui][eaoui]',word))
-    disc+=doubleAndtripple + tripple
+    doubleAndtriple = len(re.findall(r'[eaoui][eaoui]',word))
+    trpple = len(re.findall(r'[eaoui][eaoui][eaoui]',word))
+    disc+=doubleAndtriple + triple
     
     #5) count remaining vowels in word.
     numVowels = len(re.findall(r'[eaoui]',word))
@@ -157,21 +157,9 @@ def count_syllables(word): #Credits: https://github.com/eaydin/sylco/blob/master
         
     if word in exception_add :
         syls+=1     
-    
         
     # calculate the output
     return numVowels - disc + syls
-
-def count_complex_words(text):
-    # Very basic complex word counting algorithm
-    word_list = text.split()
-    complex_words = 0
-    
-    for word in word_list:
-        if count_syllables(word) >= 3:
-            complex_words += 1
-    
-    return complex_words
 
 def count_polysyllabic_words(text):
     # Very basic polysyllabic word counting algorithm
